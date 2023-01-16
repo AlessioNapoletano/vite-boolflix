@@ -1,34 +1,113 @@
 <script>
+
+import LangFlag from 'vue-lang-code-flags';
+
 export default {
     name: 'Movies',
     props: {
+        image: String,
         originalTitle: String,
         title: String,
         language: String,
-        valutation: String,
+        star: Number
     }
 }
 </script>
 
 <template>
-    <article>
-        <h2>
-            Titolo Originale: {{ originalTitle }}
-        </h2>
-        <h3>
-            Titolo: {{ title }}
-        </h3>
+    <article class="card">
+        <div class="image">
+            <img :src="image" :alt="title">
+        </div>
 
-        <p>
-            Lingua: {{ language }}
-        </p>
+        <div class="description">
+            <h2>
+                Titolo Originale: {{ originalTitle }}
+            </h2>
 
-        <p>
-            Voto: {{ valutation }}
-        </p>
+            <h4>
+                Titolo: {{ title }}
+            </h4>
+
+            <p>
+                Lingua: {{ language }}
+            </p>
+
+            <div class="star flex">
+                <p>
+                    Stelle:
+                </p>
+                <p v-for="n in (Math.floor(star / 2))">
+                    <i class="fa-solid fa-star"></i>
+                </p>
+            </div>
+        </div>
     </article>
+
+
 </template>
 
 <style lang="scss" scoped>
+@use '../styles/general.scss' as *;
+@use '../styles/partials/variables.scss' as *;
 
+h1 {
+    color: grey;
+    font-size: 3rem;
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.flex {
+    display: flex;
+}
+
+i {
+    color: yellow;
+}
+
+.card {
+    width: calc((100% / 6) - .5rem);
+    height: 350px;
+    margin-right: .5rem;
+    margin-bottom: 2rem;
+    border: 1px solid white;
+    background-color: black;
+
+    &:hover .image {
+        display: none;
+    }
+
+    .image {
+        width: 100%;
+        height: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .description {
+        display: none;
+        color: white;
+        padding: .5rem;
+    }
+
+    &:hover .description {
+        display: block;
+    }
+
+    h2 {
+        margin-bottom: 1rem;
+    }
+
+    h4 {
+        margin-bottom: 1rem;
+    }
+
+    p {
+        margin-bottom: 1rem;
+    }
+}
 </style>
