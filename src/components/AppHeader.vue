@@ -85,6 +85,9 @@ export default {
 header {
   background-color: $main-bg-color;
   padding: 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .container {

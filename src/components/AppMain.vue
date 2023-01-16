@@ -68,6 +68,10 @@ export default {
 @use '../styles/general.scss' as *;
 @use '../styles/partials/variables.scss' as *;
 
+main {
+    padding-top: 4rem;
+}
+
 h1 {
     color: grey;
     font-size: 3rem;
