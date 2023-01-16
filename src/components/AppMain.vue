@@ -1,17 +1,68 @@
 <script>
-export default {
+import { store } from '../store.js'
 
+export default {
+    data() {
+        return {
+            store,
+        }
+    },
+
+    methods: {
+
+    },
+
+    created() {
+    }
 }
 </script>
 
 <template>
     <main>
-        <h1>
-            Questo è il main
-        </h1>
+        <div class="container">
+            <h1 v-if="store.movieList.length === 0">
+                i risultati del film richiesto appariranno qui
+            </h1>
+            <ul v-else>
+                <li v-for="movie in store.movieList">
+
+                    <h2>
+                        Titolo Originale {{ movie.original_title }}
+                    </h2>
+
+                    <h4>
+                        Titolo: {{ movie.title }}
+                    </h4>
+
+                    <p>
+                        Lingua: {{ movie.original_language }}
+                    </p>
+
+                    <p>
+                        voto: {{ movie.vote_average }}
+                    </p>
+                </li>
+
+            </ul>
+        </div>
+
     </main>
 </template>
 
 <style lang="scss" scoped>
+@use '../styles/general.scss' as *;
+@use '../styles/partials/variables.scss' as *;
 
+main {
+
+    //background-color: $secondary-bg-color;
+    h1 {
+        color: grey;
+        text-align: center;
+    }
+
+    li {
+        margin-bottom: 1rem;
+    }
+}
 </style>
