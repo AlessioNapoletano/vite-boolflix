@@ -1,7 +1,6 @@
 <script>
-import axios from 'axios'
 import { store } from '../store.js'
-
+import axios from 'axios'
 
 export default {
   name: 'AppHeader',
@@ -61,12 +60,14 @@ export default {
 <template>
   <header>
     <div class="container">
-      <h1>
-        BOOLFLIX
-      </h1>
+      <div class="title">
+        <h1>
+          BOOLFLIX
+        </h1>
+      </div>
 
       <div class="search">
-        <input type="text" v-model="store.search" @keyup.enter="getApi(store.search)">
+        <input type="text" v-model="store.search" @keyup.enter="getApi(store.search)" placeholder="Cerca">
         <button @click="getApi(store.search)">cerca</button>
         <!--End Div Search-->
       </div>
@@ -83,12 +84,13 @@ export default {
 
 header {
   background-color: $main-bg-color;
+  padding: 1rem;
 }
 
 .container {
-  padding-top: 1rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
 
   h1 {
@@ -101,12 +103,12 @@ header {
   align-items: center;
 
   input {
-    padding: 1rem;
+    padding: .5rem;
     margin-right: 1rem;
   }
 
   button {
-    padding: 1rem;
+    padding: .5rem;
     font-size: 1.2rem;
   }
 }

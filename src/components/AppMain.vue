@@ -1,12 +1,14 @@
 <script>
 import { store } from '../store.js'
 import LangFlag from 'vue-lang-code-flags';
+import Movies from './Movies.vue'
 
 export default {
     name: 'AppMain',
 
     components: {
-        LangFlag
+        LangFlag,
+        Movies
     },
 
     data() {
@@ -16,7 +18,6 @@ export default {
     },
 
     methods: {
-        //https://image.tmdb.org/t/p/w342/nxbQLpCm78w5UHOyLrnkFJVCY7p.jpg
     },
 
     created() {
@@ -29,19 +30,22 @@ export default {
         <div class="container">
             <section class="no-content" v-show="(store.movieList.length || store.tvShows.length) === 0">
                 <h1>
-                    i risultati del film richiesto appariranno qui
+                    i risultati della ricerca appariranno qui
                 </h1>
             </section>
 
+            <!-- <Movies v-for="movie in store.movieList" :originalTitle="movie.original_title" :title="movie.title" /> -->
+
             <section class="movies">
                 <h1 v-show="store.movieList.length > 0">
-                    Film
+                    Film trovati: {{ store.movieList.length }}
                 </h1>
 
-                <div class="wrapper-card">
+                <div class="wrapper-card flex">
                     <div class="card" v-for="movie in store.movieList">
                         <div class="image">
-                            <img :src="'https://image.tmdb.org/t/p/w342/' + movie.poster_path" alt="">
+                            <img :src="'https://image.tmdb.org/t/p/w342/' + movie.poster_path"
+                                :alt="store.movieList.title">
                         </div>
 
                         <div class="description">
@@ -78,10 +82,10 @@ export default {
 
             <section class=" tv-shows">
                 <h1 v-show="store.tvShows.length > 0">
-                    Serie Tv
+                    Serie Tv trovati: {{ store.tvShows.length }}
                 </h1>
 
-                <div class="wrapper-card">
+                <div class="wrapper-card flex">
                     <div class="card" v-for="tvShow in store.tvShows">
                         <div class="image">
                             <img :src="'https://image.tmdb.org/t/p/w342/' + tvShow.poster_path" alt="">
@@ -129,6 +133,13 @@ export default {
 @use '../styles/general.scss' as *;
 @use '../styles/partials/variables.scss' as *;
 
+h1 {
+    color: grey;
+    font-size: 3rem;
+    text-align: center;
+    margin: 3rem 0;
+}
+
 .flex {
     display: flex;
 }
@@ -138,22 +149,21 @@ i {
 }
 
 .wrapper-card {
-    display: flex;
     flex-wrap: wrap;
     margin-bottom: 2rem;
 
     .card {
-        width: calc((100% / 4) - 2rem);
-        height: 300px;
-        margin: 1rem;
+        width: calc((100% / 6) - .5rem);
+        height: 350px;
+        margin-right: .5rem;
         margin-bottom: 2rem;
-        border: 1px solid black;
+        border: 1px solid white;
         background-color: black;
-        overflow: hidden;
 
         &:hover .image {
             display: none;
         }
+
 
         .image {
             width: 100%;
@@ -166,23 +176,14 @@ i {
         }
 
         .description {
+            display: none;
             color: white;
+            padding: .5rem;
         }
-    }
-}
 
-main {
-    padding-top: 3rem;
-
-    h1 {
-        color: grey;
-        font-size: 3rem;
-        text-align: center;
-        margin-bottom: 3rem;
-    }
-
-    li {
-        margin-bottom: 1rem;
+        &:hover .description {
+            display: block;
+        }
     }
 }
 </style>
