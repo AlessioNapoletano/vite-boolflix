@@ -1,9 +1,13 @@
 <script>
 import { store } from '../store.js'
-import Movies from './Movies.vue';
+import LangFlag from 'vue-lang-code-flags';
 
 export default {
     name: 'AppMain',
+
+    components: {
+        LangFlag
+    },
 
     data() {
         return {
@@ -35,23 +39,27 @@ export default {
                 </h1>
                 <div class="wrapper-card">
                     <div class="card" v-for="movie in store.movieList">
+                        <div class="image">
+                            <img :src="'https://image.tmdb.org/t/p/w342/' + movie.poster_path" alt="">
+                        </div>
 
-                        <img :src="'https://image.tmdb.org/t/p/w342/' + movie.poster_path" alt="">
-                        <h2>
-                            Titolo Originale {{ movie.original_title }}
-                        </h2>
+                        <div class="description">
+                            <h2>
+                                Titolo Originale: {{ movie.original_title }}
+                            </h2>
 
-                        <h4>
-                            Titolo: {{ movie.title }}
-                        </h4>
+                            <h4>
+                                Titolo: {{ movie.title }}
+                            </h4>
 
-                        <p>
-                            Lingua: {{ movie.original_language }}
-                        </p>
+                            <p>
+                                Lingua: <lang-flag :iso="movie.original_language" />
+                            </p>
 
-                        <p>
-                            voto: {{ movie.vote_average }}
-                        </p>
+                            <p>
+                                voto: {{ movie.vote_average }}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -101,9 +109,30 @@ export default {
     margin-bottom: 2rem;
 
     .card {
-        width: 400px;
-        height: auto;
+        width: calc((100% / 4) - 2rem);
+        height: 300px;
+        margin: 1rem;
         margin-bottom: 2rem;
+        border: 1px solid black;
+        background-color: black;
+
+        &:hover .image {
+            display: none;
+        }
+
+        .image {
+            width: 100%;
+            height: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .description {
+            color: white;
+        }
     }
 }
 
