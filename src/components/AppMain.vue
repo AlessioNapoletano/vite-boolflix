@@ -57,14 +57,25 @@ export default {
                             </p>
 
                             <p>
-                                voto: {{ movie.vote_average }}
+                                voto numerico: {{ movie.vote_average }}
                             </p>
+
+                            <br>
+
+                            <div class="star flex">
+                                <p>
+                                    Stelle:
+                                </p>
+                                <p v-for="n in (Math.floor(movie.vote_average / 2))">
+                                    <i class="fa-solid fa-star"></i>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="tv-shows">
+            <section class=" tv-shows">
                 <h1 v-show="store.tvShows.length > 0">
                     Serie Tv
                 </h1>
@@ -102,6 +113,14 @@ export default {
 <style lang="scss" scoped>
 @use '../styles/general.scss' as *;
 @use '../styles/partials/variables.scss' as *;
+
+.flex {
+    display: flex;
+}
+
+i {
+    color: yellow;
+}
 
 .wrapper-card {
     display: flex;
