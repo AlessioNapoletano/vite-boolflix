@@ -45,6 +45,11 @@ export default {
         .catch(function (error) {
           console.log(error);
         })
+    },
+
+    getApi(search) {
+      this.getTvShows(search);
+      this.getMovies(search);
     }
   }
 
@@ -59,8 +64,8 @@ export default {
       </h1>
 
       <div class="search">
-        <input type="text" v-model="store.search" @keyup.enter="getMovies(store.search) ; getTvShows(store.search)">
-        <button @click="getMovies(store.search) ; getTvShows(store.search)">cerca</button>
+        <input type="text" v-model="store.search" @keyup.enter="getApi(store.search)">
+        <button @click="getApi(store.search)">cerca</button>
         <!--End Div Search-->
       </div>
 
