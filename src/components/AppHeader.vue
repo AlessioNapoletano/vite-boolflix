@@ -5,6 +5,7 @@ import { store } from '../store.js'
 
 export default {
   name: 'AppHeader',
+
   data() {
     return {
       store,
@@ -13,6 +14,7 @@ export default {
       api_key: '0790ff9b10b8f555370ac1d91a5acdb6'
     }
   },
+
   methods: {
     getTvShows(searchTvShows) {
       axios.get(this.api_uri_Tv_Shows, {

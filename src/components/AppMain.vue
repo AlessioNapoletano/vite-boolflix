@@ -37,6 +37,7 @@ export default {
                 <h1 v-show="store.movieList.length > 0">
                     Film
                 </h1>
+
                 <div class="wrapper-card">
                     <div class="card" v-for="movie in store.movieList">
                         <div class="image">
@@ -82,24 +83,38 @@ export default {
 
                 <div class="wrapper-card">
                     <div class="card" v-for="tvShow in store.tvShows">
-                        <div class="show">
+                        <div class="image">
                             <img :src="'https://image.tmdb.org/t/p/w342/' + tvShow.poster_path" alt="">
                         </div>
 
-                        <div class="hide">
+                        <div class="description">
                             <h2>
                                 Titolo Originale: {{ tvShow.original_name }}
                             </h2>
 
+                            <h4>
+                                Titolo: {{ tvShow.title }}
+                            </h4>
+
                             <p>
-                                Lingua: {{ tvShow.original_language }}
+                                Lingua: <lang-flag :iso="tvShow.original_language" />
                             </p>
 
                             <p>
-                                Voto: {{ tvShow.vote_average }}
+                                voto numerico: {{ tvShow.vote_average }}
                             </p>
+
+                            <br>
+
+                            <div class="star flex">
+                                <p>
+                                    Stelle:
+                                </p>
+                                <p v-for="n in (Math.floor(tvShow.vote_average / 2))">
+                                    <i class="fa-solid fa-star"></i>
+                                </p>
+                            </div>
                         </div>
-
                     </div>
                 </div>
 
@@ -159,7 +174,6 @@ i {
 main {
     padding-top: 3rem;
 
-    //background-color: $secondary-bg-color;
     h1 {
         color: grey;
         font-size: 3rem;
