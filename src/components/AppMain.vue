@@ -115,6 +115,7 @@ export default {
         margin-bottom: 2rem;
         border: 1px solid black;
         background-color: black;
+        overflow: hidden;
 
         &:hover .image {
             display: none;
