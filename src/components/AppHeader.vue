@@ -8,13 +8,31 @@ export default {
   data() {
     return {
       store,
-      api_uri: 'https://api.themoviedb.org/3/search/movie',
+      api_uri_Tv_Shows: 'https://api.themoviedb.org/3/search/tv',
+      api_uri_movie: 'https://api.themoviedb.org/3/search/movie',
       api_key: '0790ff9b10b8f555370ac1d91a5acdb6'
     }
   },
   methods: {
+    getTvShows(searchTvShows) {
+      axios.get(this.api_uri_Tv_Shows, {
+        params: {
+          api_key: this.api_key,
+          query: searchTvShows
+        }
+      })
+        .then((response) => {
+          console.log(response.data.results);
+          this.store.tvShows = response.data.results;
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+
+    },
+
     getMovies(searchMovies) {
-      axios.get(this.api_uri, {
+      axios.get(this.api_uri_movie, {
         params: {
           api_key: this.api_key,
           query: searchMovies
@@ -41,8 +59,8 @@ export default {
       </h1>
 
       <div class="search">
-        <input type="text" v-model="store.searchMovie">
-        <button @click="getMovies(store.searchMovie)">cerca</button>
+        <input type="text" v-model="store.search">
+        <button @click="getMovies(store.search) ; getTvShows(store.search)">cerca</button>
         <!--End Div Search-->
       </div>
 
