@@ -34,13 +34,17 @@ export default {
                 Titolo: {{ title }}
             </h4>
 
-            <p>
-                Lingua: {{ language }}
-            </p>
+            <div class="icon-flag flex">
+                <span>
+                    lingua:
+                </span>
+                <img :src="language" alt="Country Flag">
+            </div>
+
 
             <div class="star flex">
                 <p>
-                    Stelle:
+                    Valutazione:
                 </p>
                 <p v-for="n in (Math.ceil(star / 2))">
                     <i class="fa-solid fa-star"></i>
@@ -65,6 +69,22 @@ h1 {
     font-size: 3rem;
     text-align: center;
     margin: 3rem 0;
+}
+
+.icon-flag {
+    width: 100px;
+    height: 25px;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    span {
+        margin-right: 1rem;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .flex {

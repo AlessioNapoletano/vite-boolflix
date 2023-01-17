@@ -16,6 +16,9 @@ export default {
     },
 
     methods: {
+        getImagePath: function (imgPath) {
+            return new URL(`../assets/img/${imgPath}.png`, import.meta.url).href;
+        }
     },
 
     created() {
@@ -32,6 +35,9 @@ export default {
                 </h1>
             </section>
 
+            <!--
+                img src="../assets/img/it.png" alt="">
+            -->
 
             <section class="movies">
                 <h1 v-show="store.movieList.length > 0">
@@ -41,7 +47,7 @@ export default {
                 <div class="wrapper-card flex">
                     <Movies v-for="movie in store.movieList" :originalTitle="movie.original_title" :title="movie.title"
                         :star="movie.vote_average" :image="'https://image.tmdb.org/t/p/w342/' + movie.poster_path"
-                        :language="movie.original_language" />
+                        :language="getImagePath(movie.original_language)" />
                 </div>
             </section>
 
