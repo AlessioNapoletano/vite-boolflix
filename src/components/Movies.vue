@@ -42,7 +42,7 @@ export default {
                 <p>
                     Stelle:
                 </p>
-                <p v-for="n in (Math.floor(star / 2))">
+                <p v-for="n in (Math.ceil(star / 2))">
                     <i class="fa-solid fa-star"></i>
                 </p>
             </div>
