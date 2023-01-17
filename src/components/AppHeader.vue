@@ -79,7 +79,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@use '../styles/general.scss' as *;
 @use '../styles/partials/variables.scss' as *;
 
 header {
@@ -94,7 +93,6 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 
   h1 {
     color: $main-color;

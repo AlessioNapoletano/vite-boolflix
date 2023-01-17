@@ -12,6 +12,7 @@ export default {
     data() {
         return {
             store,
+            posterPath: 'https://image.tmdb.org/t/p/w342/',
         }
     },
 
@@ -35,10 +36,6 @@ export default {
                 </h1>
             </section>
 
-            <!--
-                img src="../assets/img/it.png" alt="">
-            -->
-
             <section class="movies">
                 <h1 v-show="store.movieList.length > 0">
                     Film trovati: {{ store.movieList.length }}
@@ -46,7 +43,7 @@ export default {
 
                 <div class="wrapper-card flex">
                     <Movies v-for="movie in store.movieList" :originalTitle="movie.original_title" :title="movie.title"
-                        :star="movie.vote_average" :image="'https://image.tmdb.org/t/p/w342/' + movie.poster_path"
+                        :star="movie.vote_average" :image="posterPath + movie.poster_path"
                         :language="getImagePath(movie.original_language)" />
                 </div>
             </section>
@@ -58,7 +55,7 @@ export default {
 
                 <div class="wrapper-card flex">
                     <Movies v-for="tvShow in store.tvShows" :originalTitle="tvShow.original_name"
-                        :star="tvShow.vote_average" :image="'https://image.tmdb.org/t/p/w342/' + tvShow.poster_path"
+                        :star="tvShow.vote_average" :image="posterPath + tvShow.poster_path"
                         :language="tvShow.original_language" :title="tvShow.name" />
                 </div>
             </section>
@@ -69,26 +66,19 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@use '../styles/general.scss' as *;
-@use '../styles/partials/variables.scss' as *;
-
 main {
     padding-top: 4rem;
-}
 
-h1 {
-    color: grey;
-    font-size: 3rem;
-    text-align: center;
-    margin: 3rem 0;
-}
+    h1 {
+        color: grey;
+        font-size: 3rem;
+        text-align: center;
+        margin: 3rem 0;
+    }
 
-.flex {
-    display: flex;
-}
-
-.wrapper-card {
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
+    .wrapper-card {
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+    }
 }
 </style>

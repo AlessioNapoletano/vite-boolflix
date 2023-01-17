@@ -5,7 +5,6 @@ export default {
 
     data() {
         return {
-            emptyString: ''
         }
     },
 
@@ -57,49 +56,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@use '../styles/general.scss' as *;
-@use '../styles/partials/variables.scss' as *;
-
-.d-none {
-    display: none;
-}
-
-h1 {
-    color: grey;
-    font-size: 3rem;
-    text-align: center;
-    margin: 3rem 0;
-}
-
-.icon-flag {
-    width: 100px;
-    height: 25px;
-    align-items: center;
-    margin-bottom: 1rem;
-
-    span {
-        margin-right: 1rem;
-    }
-
-    img {
-        width: 100%;
-        height: 100%;
-    }
-}
-
-.flex {
-    display: flex;
-}
-
-i {
-    color: yellow;
-}
-
 .card {
     width: calc((100% / 6) - .5rem);
     height: 350px;
-    margin-right: .5rem;
-    margin-bottom: 2rem;
+    margin: 0 .5rem .5rem 0;
     border: 1px solid white;
     background-color: black;
 
@@ -127,16 +87,30 @@ i {
         display: block;
     }
 
-    h2 {
-        margin-bottom: 1rem;
-    }
-
-    h4 {
-        margin-bottom: 1rem;
-    }
-
+    h2,
+    h4,
     p {
         margin-bottom: 1rem;
     }
+}
+
+.icon-flag {
+    width: 100px;
+    height: 25px;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    span {
+        margin-right: 1rem;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+i {
+    color: yellow;
 }
 </style>
