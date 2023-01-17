@@ -1,12 +1,12 @@
 <script>
 import { store } from '../store.js'
-import Movies from './Movies.vue'
+import MovieTvShow from './MovieTvShow.vue'
 
 export default {
     name: 'AppMain',
 
     components: {
-        Movies
+        MovieTvShow
     },
 
     data() {
@@ -42,8 +42,8 @@ export default {
                 </h1>
 
                 <div class="wrapper-card flex">
-                    <Movies v-for="movie in store.movieList" :originalTitle="movie.original_title" :title="movie.title"
-                        :star="movie.vote_average" :image="posterPath + movie.poster_path"
+                    <MovieTvShow v-for="movie in store.movieList" :originalTitle="movie.original_title"
+                        :title="movie.title" :star="movie.vote_average" :image="posterPath + movie.poster_path"
                         :language="getImagePath(movie.original_language)" />
                 </div>
             </section>
@@ -54,7 +54,7 @@ export default {
                 </h1>
 
                 <div class="wrapper-card flex">
-                    <Movies v-for="tvShow in store.tvShows" :originalTitle="tvShow.original_name"
+                    <MovieTvShow v-for="tvShow in store.tvShows" :originalTitle="tvShow.original_name"
                         :star="tvShow.vote_average" :image="posterPath + tvShow.poster_path"
                         :language="tvShow.original_language" :title="tvShow.name" />
                 </div>
