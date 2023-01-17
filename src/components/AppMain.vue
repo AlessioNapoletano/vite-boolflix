@@ -1,13 +1,11 @@
 <script>
 import { store } from '../store.js'
-import LangFlag from 'vue-lang-code-flags';
 import Movies from './Movies.vue'
 
 export default {
     name: 'AppMain',
 
     components: {
-        LangFlag,
         Movies
     },
 
@@ -55,7 +53,7 @@ export default {
                 <div class="wrapper-card flex">
                     <Movies v-for="tvShow in store.tvShows" :originalTitle="tvShow.original_name"
                         :star="tvShow.vote_average" :image="'https://image.tmdb.org/t/p/w342/' + tvShow.poster_path"
-                        :language="tvShow.original_language" />
+                        :language="tvShow.original_language" :title="tvShow.name" />
                 </div>
             </section>
 

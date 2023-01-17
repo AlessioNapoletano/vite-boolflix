@@ -1,9 +1,14 @@
 <script>
 
-import LangFlag from 'vue-lang-code-flags';
-
 export default {
     name: 'Movies',
+
+    data() {
+        return {
+            emptyString: ''
+        }
+    },
+
     props: {
         image: String,
         originalTitle: String,
@@ -25,7 +30,7 @@ export default {
                 Titolo Originale: {{ originalTitle }}
             </h2>
 
-            <h4>
+            <h4 :class="(title === originalTitle) ? 'd-none' : ''">
                 Titolo: {{ title }}
             </h4>
 
@@ -50,6 +55,10 @@ export default {
 <style lang="scss" scoped>
 @use '../styles/general.scss' as *;
 @use '../styles/partials/variables.scss' as *;
+
+.d-none {
+    display: none;
+}
 
 h1 {
     color: grey;
